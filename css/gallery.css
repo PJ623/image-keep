@@ -1,7 +1,22 @@
-#galleryContainer {
-    justify-content: space-evenly;
+.thumbnail {
+    width: 192px;
 }
 
-.thumbnail {
-    width: 200px;
+#modal {
+    height: 100%;
+    width: 100%;
+    display: flex; /* Declared to start as none inline in layout.html */
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+#modal-content {
+    width: auto;
+    height: auto;
+    max-width: 95%;
+    max-height: 95%;
 }
