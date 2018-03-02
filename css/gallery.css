@@ -1,0 +1,7 @@
+#galleryContainer {
+    justify-content: space-evenly;
+}
+
+.thumbnail {
+    width: 200px;
+}

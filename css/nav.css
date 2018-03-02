@@ -1,0 +1,21 @@
+nav {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav * {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav li {
+    list-style-type: none;
+    display: inline-block;
+}

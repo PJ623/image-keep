@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Keep</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="/css/gallery.css">
+</head>
+<header>
+    <div class="full-width black">
+        <nav class="fixed">
+            <ul>
+                <li>
+                    <a href="#">Gallery</a>
+                </li>
+                <li>
+                    <a href="#">Upload</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<body class="full-width" onload="getGallery()">
+
+    <!-- Remove later -->
+    <div class="fixed" style="padding: 2em; text-align: center;">
+        <button onclick="getGallery()">Get Gallery JSON</button>
+    </div>
+
+    <div class="fixed flex" id="galleryContainer">
+        <!-- Images loaded here. -->
+    </div>
+
+    <script src="/js/gallery.js"></script>
+</body>
+
+</html>

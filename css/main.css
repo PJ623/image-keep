@@ -1,0 +1,23 @@
+.full-width {
+    width: 100%;
+}
+
+body {
+    margin: 0px;
+}
+
+.fixed {
+    max-width: 960px;
+    margin: auto;
+}
+
+.black {
+    background-color: black;
+    color: white;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
