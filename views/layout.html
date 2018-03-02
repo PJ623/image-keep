@@ -12,35 +12,31 @@
         <nav class="fixed">
             <ul>
                 <li>
-                    <a href="#">Gallery</a>
+                    <button onclick="getView('/views/gallery.html', () => { gallery.render(document.getElementById('galleryContainer')); })">Gallery</button>
                 </li>
                 <li>
                     <a href="#">Upload</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <button onclick="getView('/views/about.html')">About</button>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
 
-<body class="full-width" onload="getGallery()">
-
-    <!-- Remove later -->
-    <div class="fixed" style="padding: 2em; text-align: center;">
-        <button onclick="getGallery()">Get Gallery JSON</button>
+<body class="full-width" onload="getView('/views/gallery.html')">
+    <div id="container">
+        <!-- Load AJAX-retrieved HTML content here. -->
     </div>
 
-    <div class="fixed flex" id="galleryContainer">
-        <!-- Images loaded here. -->
-    </div>
+    <!-- Just setting the environment -->
+    <script>
+        let galleryLoaded = false;
+    </script>
 
-    <div id="modal" style="display: none;">
-        <img id="modal-content" src="">
-    </div>
-    
-    <script src="/js/gallery.js"></script>
+    <!-- Load views using AJAX -->
+    <script src="/js/view-handler.js"></script>
 </body>
 
 </html>

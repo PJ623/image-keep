@@ -55,22 +55,23 @@ function Gallery() {
     }
 }
 
-// Create gallery object.
-let gallery = new Gallery();
-
 // Uses AJAX to request a JSON file containing gallery data.
-function getGallery() {
+function getGallery(url) {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "/json/gallery.json");
+    xhr.open("GET", url);
 
     xhr.onload = () => {
         if (xhr.status == 200) {
-            let galleryContainer = document.getElementById("galleryContainer");
             gallery.insertImages(xhr.response);
-            gallery.render(galleryContainer);
+            gallery.render(document.getElementById("galleryContainer"));
         }
     };
 
     xhr.send();
 }
+
+// Create gallery object.
+let gallery = new Gallery();
+
+getGallery("/json/gallery.json");

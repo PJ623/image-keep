@@ -16,6 +16,15 @@ http.createServer((req, res) => {
         serveFile("./views/layout.html");
     }
 
+    if (req.url == "/views/about.html" && req.method == "GET") {
+        serveFile("." + req.url);
+    }
+
+    // TODO: Expand on this.
+    if (req.url == "/views/gallery.html" && req.method == "GET") {
+        serveFile("." + req.url);
+    }
+
     if (req.url.match(/.json$/i) && req.method == "GET") {
         serveFile("." + req.url);
     }
