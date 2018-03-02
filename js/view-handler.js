@@ -1,4 +1,4 @@
-function getView(url, cb) {
+function getView(url, /*cb*/) {
     let xhr = new XMLHttpRequest();
 
     xhr.open("GET", url, true);
@@ -13,10 +13,12 @@ function getView(url, cb) {
                 script.src = "/js/gallery.js"
                 container.appendChild(script);
                 galleryLoaded = true;
-            } else {
-                if (typeof cb == "function") {
+            } else if (url == "/views/gallery.html") {
+                /*if (typeof cb == "function") {
                     cb();
-                }
+                    
+                }*/
+                gallery.render(document.getElementById("galleryContainer"));
             }
         }
     }

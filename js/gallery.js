@@ -74,4 +74,5 @@ function getGallery(url) {
 // Create gallery object.
 let gallery = new Gallery();
 
+// Make more flexible... put this call somewhere else?
 getGallery("/json/gallery.json");
