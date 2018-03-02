@@ -25,6 +25,7 @@ function Gallery() {
             image.className = "thumbnail";
             image.src = "/images/" + this.images[i].fileName;
 
+            // Hook up images with modal view functionality.
             if (document.getElementById("modal") && document.getElementById("modal-content")) {
                 modal = document.getElementById("modal");
                 modalContent = document.getElementById("modal-content");

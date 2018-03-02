@@ -11,7 +11,7 @@ const port = 3000;
 
 http.createServer((req, res) => {
 
-    // Serve main page:
+    // The following instructions serve views.
     if (req.url == "/" && req.method == "GET") {
         serveFile("./views/layout.html");
     }
@@ -20,7 +20,6 @@ http.createServer((req, res) => {
         serveFile("." + req.url);
     }
 
-    // TODO: Expand on this.
     if (req.url == "/views/gallery.html" && req.method == "GET") {
         serveFile("." + req.url);
     }
@@ -29,7 +28,7 @@ http.createServer((req, res) => {
         serveFile("." + req.url);
     }
 
-    // Serve non-html files:
+    // The rest of these instructions are for serving non-view files.
     if (req.url.match(/.css$/i) && req.method == "GET") {
         serveFile("." + req.url);
     }
@@ -38,7 +37,7 @@ http.createServer((req, res) => {
         serveFile("." + req.url);
     }
 
-    // Serve a favicon some time
+    // TODO: Serve favicon.
     /*
     if (req.url.match(/.ico$/)) {
         serveFile("." + req.url);
@@ -52,12 +51,12 @@ http.createServer((req, res) => {
         serveFile("." + req.url);
     }
 
-    // Not needed:
+    // Not needed.
     if (req.url.match(/.txt$/i) && req.method == "GET") {
         serveFile("." + req.url);
     }
 
-    // General file-serving function:
+    // General file-serving function.
     function serveFile(dir) {
         fs.readFile(dir, (err, data) => {
             if (err) {
@@ -79,6 +78,7 @@ http.createServer((req, res) => {
             }
 
             console.log("Serving", dir);
+
             res.writeHead(200, { "Content-Type": contentTypeMap[fileExtension] });
             res.write(data);
             res.end();
