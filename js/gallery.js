@@ -19,19 +19,21 @@ function Gallery() {
     this.render = (ele) => {
         for (let i = 0; i < this.images.length; i++) {
             let image = document.createElement("IMG");
+            let modal;
+            let modalContent;
 
             image.className = "thumbnail";
             image.src = "/images/" + this.images[i].fileName;
 
             if (document.getElementById("modal") && document.getElementById("modal-content")) {
-                var modal = document.getElementById("modal");
-                var modalContent = document.getElementById("modal-content");
+                modal = document.getElementById("modal");
+                modalContent = document.getElementById("modal-content");
             } else {
-                var modal = document.createElement("DIV");
+                modal = document.createElement("DIV");
                 modal.id = "modal";
                 modal.style.display = "none";
 
-                var modalContent = document.createElement("IMG");
+                modalContent = document.createElement("IMG");
                 modalContent.id = "modal-content";
 
                 document.body.appendChild(modal);

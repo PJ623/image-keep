@@ -12,20 +12,20 @@
         <nav class="fixed">
             <ul>
                 <li>
-                    <button onclick="getView('/views/gallery.html')">Gallery</button>
+                    <button onclick="viewHandler.getView('/views/gallery.html')">Gallery</button>
                 </li>
                 <li>
                     <a href="#">Upload</a>
                 </li>
                 <li>
-                    <button onclick="getView('/views/about.html')">About</button>
+                    <button onclick="viewHandler.getView('/views/about.html')">About</button>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
 
-<body class="full-width" onload="getView('/views/gallery.html')">
+<body class="full-width" onload="viewHandler.getView('/views/gallery.html')">
     <div id="container">
         <!-- Load AJAX-retrieved HTML content here. -->
     </div>
