@@ -6,10 +6,10 @@ function Gallery() {
     // Parses JSON and adds the image data from that JSON to the Gallery object.
     this.insertImages = (galleryJSON) => {
         if (galleryJSON) {
-            let receivedGallery = JSON.parse(galleryJSON);
+            let galleryData = JSON.parse(galleryJSON);
 
-            for (let i = 0; i < receivedGallery.images.length; i++) {
-                this.images.push(receivedGallery.images[i]);
+            for (let i = this.images.length; i < galleryData.images.length; i++) {
+                this.images.push(galleryData.images[i]);
             }
         }
     }

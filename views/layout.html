@@ -12,17 +12,39 @@
         <nav class="fixed">
             <ul>
                 <li>
-                    <button onclick="viewHandler.getView('/views/gallery.html')">Gallery</button>
+                    <div class="nav-control">
+                        <!-- TODO: Replace with proper logo. -->
+                        <span class="logo">Image Keep</span>
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="nav-control hover" onclick="viewHandler.getView('/views/gallery.html')">
+                        <span>Gallery</span>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">Upload</a>
+                    <div class="nav-control hover" onclick="viewHandler.getView('/views/about.html')">
+                        <span>About</span>
+                    </div>
                 </li>
+            </ul>
+            <ul>
                 <li>
-                    <button onclick="viewHandler.getView('/views/about.html')">About</button>
+                    <div class="nav-control">
+                        <!-- TODO: Find and use an upload icon. -->
+                        <input type="text" placeholder="Enter image URL">
+                        <input type="submit" value="+">
+                    </div>
                 </li>
             </ul>
         </nav>
     </div>
+    <script>
+        // TODO: Set ul height to nav-bar's computed height and recalculate with window resize
+        console.log("Hello");
+    </script>
 </header>
 
 <body class="full-width" onload="viewHandler.getView('/views/gallery.html')">

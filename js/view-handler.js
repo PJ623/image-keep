@@ -1,5 +1,5 @@
 let viewHandler = {
-
+    currentView: "",
     // Map specific views to specific functions.
     specialViewMap: {
         "/views/gallery.html": () => {
@@ -11,7 +11,7 @@ let viewHandler = {
                 container.appendChild(script);
                 galleryLoaded = true;
 
-            // If gallery already exists, simply render the gallery's contents onto the page.
+                // If gallery already exists, simply render the gallery's contents onto the page.
             } else {
                 gallery.render(document.getElementById("galleryContainer"));
             }
@@ -20,20 +20,25 @@ let viewHandler = {
 
     // Get html and display html file using AJAX.
     getView: (url) => {
-        let xhr = new XMLHttpRequest();
 
-        xhr.open("GET", url, true);
-        xhr.onload = () => {
-            if (xhr.status == 200) {
-                let container = document.getElementById("container");
-                container.innerHTML = xhr.response;
+        // Only make AJAX request for a view if the view isn't already loaded.
+        if (url != viewHandler.currentView) {
+            let xhr = new XMLHttpRequest();
 
-                // Process special views like gallery.html.
-                if(viewHandler.specialViewMap[url]){
-                    viewHandler.specialViewMap[url]();
+            xhr.open("GET", url, true);
+            xhr.onload = () => {
+                if (xhr.status == 200) {
+                    let container = document.getElementById("container");
+                    container.innerHTML = xhr.response;
+
+                    // Process special views like gallery.html.
+                    if (viewHandler.specialViewMap[url]) {
+                        viewHandler.specialViewMap[url]();
+                    }
+                    viewHandler.currentView = url;
                 }
             }
+            xhr.send();
         }
-        xhr.send();
     }
 }
