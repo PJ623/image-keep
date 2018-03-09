@@ -1,5 +1,8 @@
 let viewHandler = {
+
+    // Keep track of what view is currently being used.
     currentView: "",
+
     // Map specific views to specific functions.
     specialViewMap: {
         "/views/gallery.html": () => {

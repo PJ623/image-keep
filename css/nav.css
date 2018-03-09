@@ -2,7 +2,7 @@ nav {
     height: 50px;
     max-height: auto;
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: space-between;
 }
 
@@ -43,4 +43,19 @@ nav input {
 
 .logo {
     font-size: 1.5em;
+}
+
+.dropdown-content {
+    display: none;
+    /*flex-direction: column;*/
+    position: absolute;
+    top: 50px;
+    right: 0;
+    height: auto;
+    width: auto;
+}
+
+.dropdown-content li {
+    display: block;
+    background-color: grey;
 }

@@ -20,31 +20,44 @@
             </ul>
             <ul>
                 <li>
-                    <div class="nav-control hover" onclick="viewHandler.getView('/views/gallery.html')">
+                    <div class="nav-control hover dropdown-control" onclick="viewHandler.getView('/views/about.html')">
+                        <span>About</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="nav-control hover dropdown-control" onclick="viewHandler.getView('/views/gallery.html')">
                         <span>Gallery</span>
                     </div>
                 </li>
                 <li>
-                    <div class="nav-control hover" onclick="viewHandler.getView('/views/about.html')">
-                        <span>About</span>
+                    <div class="nav-control hover dropdown-control" onclick="">
+                        <span>Upload</span>
                     </div>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <div class="nav-control">
-                        <!-- TODO: Find and use an upload icon. -->
-                        <input type="text" placeholder="Enter image URL">
-                        <input type="submit" value="+">
+                    <div class="nav-control hover dropdown-control" onclick="">
+                        <span>Git</span>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Drop down appears depending on screen -->
+            <ul>
+                <li>
+                    <div id="nav-dropdown" style="display: none" class="nav-control hover" onclick="toggleDropdown()">
+                        <span>Button</span>
+                        <ul class="dropdown-content" style="display: none">
+                            <!-- .dropdown-control elements get moved over here. -->
+                        </ul>
                     </div>
                 </li>
             </ul>
         </nav>
     </div>
-    <script>
-        // TODO: Set ul height to nav-bar's computed height and recalculate with window resize
-        console.log("Hello");
-    </script>
+
+    <script src="/js/nav.js"></script>
 </header>
 
 <body class="full-width" onload="viewHandler.getView('/views/gallery.html')">
