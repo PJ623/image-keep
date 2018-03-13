@@ -18,6 +18,14 @@ let viewHandler = {
             } else {
                 gallery.render(document.getElementById("galleryContainer"));
             }
+        },
+
+        // Temporary test route for encryption
+        "/views/upload.html": () => {
+            let script = document.createElement("SCRIPT");
+            script.src = "/js/upload.js"
+
+            container.appendChild(script);
         }
     },
 

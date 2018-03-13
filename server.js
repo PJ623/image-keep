@@ -6,8 +6,9 @@
 */
 
 var http = require("http");
-var fs = require("fs");
 const port = 3000;
+var fs = require("fs");
+var crypto = require("crypto");
 
 http.createServer((req, res) => {
 
@@ -50,6 +51,28 @@ http.createServer((req, res) => {
     // Not needed.
     if (req.url.match(/.txt$/i) && req.method == "GET") {
         serveFile("." + req.url);
+    }
+
+    if (req.url == "/encrypt" && req.method == "POST") {
+
+        let body = "";
+
+        req.on("data", (data) => {
+            body += data;
+        })
+
+        req.on("end", () => {
+
+            let myKey = crypto.createCipher("aes-128-cbc", "This is the stance.");
+            let myStr = myKey.update(body, "utf8", "hex");
+            myStr += myKey.final("hex");
+
+            console.log(myStr);
+
+            res.writeHead("200");
+            res.write(myStr);
+            res.end();
+        });
     }
 
     // General file-serving function.
