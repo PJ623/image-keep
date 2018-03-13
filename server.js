@@ -1,5 +1,6 @@
 /*
     TODO
+    * Change way images are stored
     * Encrypt and decrypt files
     * Tidy up front end
     * Serve favicon
@@ -59,7 +60,7 @@ http.createServer((req, res) => {
 
         req.on("data", (data) => {
             body += data;
-        })
+        });
 
         req.on("end", () => {
 
@@ -101,6 +102,47 @@ http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": contentTypeMap[fileExtension] });
             res.write(data);
             res.end();
+        });
+    }
+
+    if (req.url == "/upload" && req.method == "POST") {
+
+        let url = "";
+
+        req.on("data", (data) => {
+            url += data;
+        });
+
+        req.on("end", () => {
+            saveImage(url, "uploaded.jpg");
+        });
+    }
+
+    // Unfinished
+    function saveImage(url, fileName) {
+
+        http.get(url, (imageRes) => {
+            let imageData = "";
+            imageRes.setEncoding("binary");
+
+            imageRes.on("data", (data) => {
+                imageData += data;
+            });
+
+            imageRes.on("end", () => {
+
+                // Make filename dynamic
+                fs.writeFile("./images/" + fileName, imageData, "binary", (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log("File has been saved.");
+                });
+
+                res.writeHead("200");
+                //res.write();
+                res.end();
+            });
         });
     }
 
