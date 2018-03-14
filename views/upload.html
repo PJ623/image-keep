@@ -5,6 +5,7 @@
     <h1>Upload</h1>
 
     <input type="text" id="url-box" placeholder="Image URL"></input>
-    <button onclick="requestEncryption(document.getElementById('url-box').value)">Upload</button>
+    <input type="text" id="file-name-box" placeholder="Filename"></input>
+    <button onclick="requestEncryption(document.getElementById('url-box').value, document.getElementById('file-name-box').value)">Upload</button>
     <span id="upload-status"></span>
 </div>

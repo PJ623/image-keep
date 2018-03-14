@@ -11,6 +11,12 @@ const port = 3000;
 var fs = require("fs");
 var crypto = require("crypto");
 
+// Maps logged-in users to their galleries. This is temporary.
+var galleryMap = {};
+
+// Temporary.
+const userID = 0;
+
 http.createServer((req, res) => {
 
     // The following instructions serve views.
@@ -24,6 +30,8 @@ http.createServer((req, res) => {
 
     // The rest of these instructions are for serving non-view files.
     if (req.url.match(/.json$/i) && req.method == "GET") {
+        galleryMap[userID] = { gallery: ".".concat(req.url) };
+        console.log("GalleryMap:", galleryMap);
         serveFile("." + req.url);
     }
 
@@ -107,14 +115,25 @@ http.createServer((req, res) => {
 
     if (req.url == "/upload" && req.method == "POST") {
 
-        let url = "";
+        let result = "";
 
         req.on("data", (data) => {
-            url += data;
+            result += data;
         });
 
         req.on("end", () => {
-            saveImage(url, "uploaded.jpg");
+            result = JSON.parse(result);
+            //console.log(result);
+            let url = result.url;
+            let fileName = result.fileName + url.match(/\.\w+$/);
+            
+            saveImage(url, fileName);
+
+            //saveImage();
+            // Remove later
+            res.writeHead("200");
+            //res.write();
+            res.end();
         });
     }
 
@@ -131,16 +150,25 @@ http.createServer((req, res) => {
 
             imageRes.on("end", () => {
 
-                // Make filename dynamic
+                let gallery = require(galleryMap[userID].gallery);
+
+                gallery.images.push({ fileName: fileName });
+                
                 fs.writeFile("./images/" + fileName, imageData, "binary", (err) => {
                     if (err) {
                         throw err;
                     }
-                    console.log("File has been saved.");
+                    console.log("File " + fileName + " has been saved.");
+                });
+
+                fs.writeFile(galleryMap[userID].gallery, JSON.stringify(gallery), (err) => {
+                    if(err) {
+                        throw err;
+                    }
+                    console.log("Updated gallery JSON.");
                 });
 
                 res.writeHead("200");
-                //res.write();
                 res.end();
             });
         });

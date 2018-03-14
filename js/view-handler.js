@@ -13,8 +13,14 @@ let viewHandler = {
 
                 container.appendChild(script);
                 galleryLoaded = true;
+                
+            // If we've uploaded an image, update the gallery.
+            } else if (newImagesUploaded) {
+                
+                getGallery("/json/gallery.json");
+                newImagesUploaded = false;
 
-                // If gallery already exists, simply render the gallery's contents onto the page.
+            // If gallery already exists, simply render the gallery's contents onto the page.
             } else {
                 gallery.render(document.getElementById("galleryContainer"));
             }
