@@ -1,34 +1,13 @@
-
 var Gallery = {
     init: function init() {
-        // Modal
-        var Modal = {
-            init: function init() {
-                var ele = document.getElementById("modal");
-                var modalImage = document.getElementById("modal-image");
-
-                this.show = function show(src) {
-                    modalImage.src = src;
-                    ele.style.display = "flex";
-                }
-
-                this.hide = function hide() {
-                    ele.style.display = "none";
-                    modalImage.src = "";
-                }
-
-                // Again, arrow function for lexical 'this'.
-                ele.addEventListener("click", () => {
-                    this.hide();
-                });
-
-                delete this.init;
-            }
-        }
-
+        // Loading dependencies: Database and Modal
+        // IV: Image Vault, an old name that was used for this project.
+        Database.connect("IVGallery", 1);
         Modal.init();
 
         // Actual gallery
+        var galleryEle = document.getElementById("gallery");
+
         function makeThumbnail(blob) {
             var src = URL.createObjectURL(blob);
             var imageThumbnail = document.createElement("img");
@@ -44,7 +23,7 @@ var Gallery = {
 
             imageContainer.appendChild(imageThumbnail);
             responsiveBlock.appendChild(imageContainer);
-            document.getElementById("gallery").appendChild(responsiveBlock);
+            galleryEle.appendChild(responsiveBlock);
 
             imageThumbnail.src = src;
 
@@ -54,17 +33,25 @@ var Gallery = {
         }
 
         this.addImage = function addImage(blob) {
-            //imageCollection.push(blob);
             Database.put(blob);
             makeThumbnail(blob);
         }
 
-        // Turn into property?
-        this.loadImages = function loadImages(imageCollection) {
-            console.log("loading...", imageCollection);
+        function loadImages(imageCollection) {
+            console.log("Loading gallery:", imageCollection);
             for (let i = 0; i < imageCollection.length; i++)
                 makeThumbnail(imageCollection[i]);
         }
+
+        this.deleteImages = function deleteImages(){
+            galleryEle.innerHTML = "";
+            Database.clearRecords();
+        }
+
+        Database.getAll(function () {
+            imageCollection = this.result;
+            loadImages(imageCollection);
+        });
 
         delete this.init;
     }

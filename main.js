@@ -1,14 +1,6 @@
-// IV: Image Vault, an old name that was used for this project.
-Database.connect("IVGallery", 1);
-
 Gallery.init();
 
-Database.getAll(function () {
-    imageCollection = this.result;
-    Gallery.loadImages(imageCollection);
-});
-
-// Make Converter object
+// Make Converter object?
 var conversionCanvas = document.getElementById("conversion-canvas");
 var conversionCanvasContext = conversionCanvas.getContext("2d");
 var conversionImg = document.getElementById("conversion-img");
@@ -19,7 +11,7 @@ function convertImageToBlob() {
     conversionCanvas.height = conversionImg.height;
     conversionCanvas.width = conversionImg.width;
     conversionCanvasContext.drawImage(conversionImg, 0, 0);
-    conversionCanvas.toBlob((blob) => {
+    conversionCanvas.toBlob(function (blob) {
         Gallery.addImage(blob);
     }, "image/jpeg", 0.92);
 }
@@ -34,7 +26,7 @@ function fetchImage(src, bypassAttempted) {
             var src = response.url;
 
             if (response.status == 200)
-                conversionImg.src = src;
+                conversionImg.src = src; // triggers conversionImg.onload, which fires convertImageToBlob()
             else
                 alert("Response status: " + response.status + ". " + "Image could not be fetched.");
         }).catch(function (e) {
@@ -50,8 +42,10 @@ function fetchImage(src, bypassAttempted) {
 }
 
 var imageSrcTextbox = document.getElementById("image-src-textbox");
+imageSrcTextbox.focus();
 
-document.getElementById("fetch").addEventListener("click", function () {
+var fetchButton = document.getElementById("fetch");
+fetchButton.addEventListener("click", function () {
     var src = imageSrcTextbox.value.trim();
 
     if (src == "")
@@ -63,8 +57,6 @@ document.getElementById("fetch").addEventListener("click", function () {
 });
 
 document.getElementById("delete-db").addEventListener("click", function () {
-    if(confirm("Delete database?")){
-        document.getElementById("gallery").innerHTML = "";
-        Database.clearRecords();
-    }
+    if (confirm("Delete all images?"))
+        Gallery.deleteImages();
 });

@@ -1,11 +1,8 @@
-/*  TODO:
-    * implement max-height restrictions for images
-*/
-
 /* Mobile */
 * {
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
 }
 
 body {
@@ -65,10 +62,11 @@ body {
     margin: auto;
 }
 
+/*
 #modal-image {
     max-width: 100%;
     max-height: 100%;
-}
+}*/
 
 .responsive-block {
     display: block;

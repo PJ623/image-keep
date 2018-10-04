@@ -65,7 +65,9 @@ var Database = {
                     }
                 }
 
-                action.onsuccess = fn;
+                action.onsuccess = fn; /*function () {
+                    fn.call(this, store);
+                }*/
 
                 action.onerror = function () {
                     alert("Action could not be completed.");
