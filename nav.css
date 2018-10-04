@@ -1,0 +1,55 @@
+/* Mobile */
+#fetch {
+    background-color: teal;
+}
+
+#delete-db {
+    background-color: red;
+}
+
+nav {
+    width: inherit;
+    text-align: center;
+    color: white;
+}
+
+nav button {
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 4px;
+}
+
+nav input[type = text]{
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+nav > .logo, nav > div {
+    display: block;
+    padding: 8px;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.stripe {
+    display: block;
+    background-color: black;
+    width: 100%;
+}
+
+/* Desktop */
+@media only screen and (min-width: 961px) {
+    nav {
+        text-align: right;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 900px;
+        margin: 0 auto;
+    }
+}

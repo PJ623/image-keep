@@ -1,0 +1,38 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Image Keep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="nav.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <div class="stripe">
+        <nav>
+            <span class="logo">Image Keep</span>
+            <div id="fetch-controls">
+                <input id="image-src-textbox" type="text" placeholder="image url">
+                <button id="fetch">Add</button>
+                <button id="delete-db">Clear</button>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div id="gallery">
+            <!-- Images are loaded here! -->
+        </div>
+    </div>
+    <div id="modal"><img id="modal-image" src=""></div>
+    <img id="conversion-img" crossorigin="anonymous">
+    <canvas id="conversion-canvas"></canvas>
+
+    <script src="database.js"></script>
+    <script src="gallery.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
