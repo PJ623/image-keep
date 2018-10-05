@@ -3,17 +3,21 @@ Gallery.init();
 // Make Converter object?
 var conversionCanvas = document.getElementById("conversion-canvas");
 var conversionCanvasContext = conversionCanvas.getContext("2d");
-var conversionImg = document.getElementById("conversion-img");
 
-conversionImg.addEventListener("load", convertImageToBlob);
+function compressAndStoreBlob(blob) {
+    var tempImgEle = new Image();
+    tempImgEle.crossOrigin = "Anonymous"; // To prevent from tainting canvas
+    tempImgEle.src = URL.createObjectURL(blob);
 
-function convertImageToBlob() {
-    conversionCanvas.height = conversionImg.height;
-    conversionCanvas.width = conversionImg.width;
-    conversionCanvasContext.drawImage(conversionImg, 0, 0);
-    conversionCanvas.toBlob(function (blob) {
-        Gallery.addImage(blob);
-    }, "image/jpeg", 0.92);
+    tempImgEle.onload = function () {
+        conversionCanvas.height = tempImgEle.height;
+        conversionCanvas.width = tempImgEle.width;
+        conversionCanvasContext.drawImage(tempImgEle, 0, 0);
+
+        conversionCanvas.toBlob(function (blob) {
+            Gallery.addImage(blob);
+        }, "image/jpeg", 0.92);
+    }
 }
 
 // Account for errors
@@ -23,12 +27,13 @@ function fetchImage(src, bypassAttempted) {
 
     fetch(src)
         .then(function (response) {
-            var src = response.url;
-
-            if (response.status == 200)
-                conversionImg.src = src; // triggers conversionImg.onload, which fires convertImageToBlob()
-            else
+            if (response.status == 200) {
+                response.blob().then(function (blob) {
+                    compressAndStoreBlob(blob);
+                });
+            } else {
                 alert("Response status: " + response.status + ". " + "Image could not be fetched.");
+            }
         }).catch(function (e) {
             if (bypassAttempted == false) {
                 console.log(e);

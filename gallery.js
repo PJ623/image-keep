@@ -9,7 +9,7 @@ var Gallery = {
         var galleryEle = document.getElementById("gallery");
 
         function makeThumbnail(blob) {
-            var src = URL.createObjectURL(blob);
+            var src = window.URL.createObjectURL(blob);
             var imageThumbnail = document.createElement("img");
 
             imageThumbnail.className = "image-thumbnail";

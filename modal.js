@@ -5,10 +5,10 @@ var Modal = {
 
         this.show = function show(src) {
             modalImage.src = src;
-
             /*
             modalImage.style.maxWidth = window.innerWidth;
-            modalImage.style.maxHeight = window.innerHeight;*/
+            modalImage.style.maxHeight = window.innerHeight;
+            */
 
             ele.style.display = "flex";
         }
