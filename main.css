@@ -71,18 +71,6 @@ body {
     align-content: center;
 }
 
-/*
-#modal > img {
-    display: block;
-    margin: auto;
-}*/
-
-#modal > div {
-    display: inline-block;
-
-    margin: auto;
-}
-
 #modal-image {
     display: block;
     max-width: 100%;

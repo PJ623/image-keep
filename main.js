@@ -84,12 +84,10 @@ optionsToggleButton.addEventListener("click", function () {
             hiddenControlsContainers[i].style.display = "none";
         }
     }
-    
+
     if (hiddenControlsDisplayed == false) {
         hiddenControlsDisplayed = true;
     } else {
         hiddenControlsDisplayed = false;
     }
-
-    //hiddenControlsDisplayed = false;
 });
