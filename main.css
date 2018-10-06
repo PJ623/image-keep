@@ -54,7 +54,7 @@ button {
     margin: 0 auto;
 }
 
-.image-delete-button:hover {
+.image-delete-button:active {
     background-color: rgba(200,0,0,1);
 }
 
@@ -106,9 +106,6 @@ button {
 
 #options-toggle:active {
     box-shadow: none;
-}
-
-#options-toggle:hover {
     background-color: rgba(0,100,100,1);
 }
 
@@ -127,7 +124,10 @@ button {
 
     .image-container {
         margin: 8px;
-        
+    }
+
+    .image-delete-button:hover {
+        background-color: rgba(200,0,0,1);
     }
 
     .image-thumbnail {
@@ -139,5 +139,9 @@ button {
         text-align: left;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    #options-toggle:hover {
+        background-color: rgba(0,100,100,1);
     }
 }

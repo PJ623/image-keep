@@ -62,11 +62,15 @@ fetchButton.addEventListener("click", function () {
         fetchImage(src);
 
     imageSrcTextbox.value = "";
+    imageSrcTextbox.focus();
 });
 
-document.getElementById("delete-db").addEventListener("click", function () {
+var deleteDbButton = document.getElementById("delete-db");
+deleteDbButton.addEventListener("click", function () {
     if (confirm("Delete all images?"))
         Gallery.deleteImages();
+
+    this.blur();
 });
 
 var optionsToggleButton = document.getElementById("options-toggle");
@@ -88,4 +92,6 @@ optionsToggleButton.addEventListener("click", function () {
         hiddenControlsDisplayed = true;
     else
         hiddenControlsDisplayed = false;
+
+    this.blur()
 });

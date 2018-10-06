@@ -3,7 +3,7 @@
     background-color: red;
 }
 
-#delete-db:hover {
+#delete-db:active {
     background-color: rgba(200,0,0,1);
 }
 
@@ -11,7 +11,7 @@
     background-color: teal;
 }
 
-#fetch:hover {
+#fetch:active {
     background-color: rgba(0,100,100,1);
 }
 
@@ -58,6 +58,14 @@ nav ul {
 
 /* Desktop */
 @media only screen and (min-width: 961px) {
+    #delete-db:hover {
+        background-color: rgba(200,0,0,1);
+    }
+
+    #fetch:hover {
+        background-color: rgba(0,100,100,1);
+    }
+
     nav {
         text-align: right;
         display: flex;
