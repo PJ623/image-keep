@@ -62,7 +62,7 @@ fetchButton.addEventListener("click", function () {
         fetchImage(src);
 
     imageSrcTextbox.value = "";
-    imageSrcTextbox.focus();
+    this.blur();
 });
 
 var deleteDbButton = document.getElementById("delete-db");
