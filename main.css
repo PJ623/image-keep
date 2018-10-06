@@ -9,9 +9,12 @@ body {
     margin: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 .container {
     display: block;
-    background-color: white;
 }
 
 .container > div {
@@ -36,6 +39,10 @@ body {
     box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
+.image-container:active {
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
 /* Basically the same look as the nav buttons. Redundant? */
 .image-delete-button {
     border-radius: 4px;
@@ -47,11 +54,16 @@ body {
     margin: 0 auto;
 }
 
+.image-delete-button:hover {
+    background-color: rgba(200,0,0,1);
+}
+
 .image-thumbnail {
     max-width: 100%;
     max-height: 500px; /*choose better number?*/
     margin: 0 auto;
     display: block;
+    cursor: pointer;
 }
 
 #gallery {
@@ -68,11 +80,12 @@ body {
     top: 0;
     left: 0;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 #modal-image {
-    display: block;
+    display: inline-block;
     max-width: 100%;
     max-height: 100%;
 }
@@ -88,6 +101,15 @@ body {
     width: 50px;
     background-color: teal;
     color: white;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+#options-toggle:active {
+    box-shadow: none;
+}
+
+#options-toggle:hover {
+    background-color: rgba(0,100,100,1);
 }
 
 .responsive-block {
@@ -96,12 +118,10 @@ body {
 
 /* Desktop */
 @media only screen and (min-width: 961px) {
-    body {
-        background-color: #f2f2f2;
-    }
+    
 
     .container {
-        width: 900px;
+        width: 961px;
         margin: 0 auto;
     }
 

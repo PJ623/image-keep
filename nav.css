@@ -1,10 +1,18 @@
 /* Mobile */
+#delete-db {
+    background-color: red;
+}
+
+#delete-db:hover {
+    background-color: rgba(200,0,0,1);
+}
+
 #fetch {
     background-color: teal;
 }
 
-#delete-db {
-    background-color: red;
+#fetch:hover {
+    background-color: rgba(0,100,100,1);
 }
 
 nav {
@@ -18,12 +26,18 @@ nav button {
     border-radius: 4px;
     color: white;
     padding: 4px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: black;
 }
 
 nav input[type = text]{
     border: none;
-    border-radius: 4px;
-    padding: 4px;
+    border-radius: 16px;
+    padding: 4px 16px 4px 16px;
+    margin-right: 4px;
 }
 
 nav > .logo, nav > div {
@@ -49,7 +63,7 @@ nav ul {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        width: 900px;
+        width: 961px;
         margin: 0 auto;
     }
 }
