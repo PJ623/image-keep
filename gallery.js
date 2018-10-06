@@ -6,45 +6,75 @@ var Gallery = {
         Modal.init();
 
         // Actual gallery
-        var galleryEle = document.getElementById("gallery");
+        var galleryElement = document.getElementById("gallery");
 
-        function makeThumbnail(blob) {
+        this.removeImage = function removeImage(originalImageUrl, element) {
+            Database.remove(originalImageUrl, function deleteElement() {
+                galleryElement.removeChild(element);
+            });
+        }
+
+        function makeThumbnail(blob, originalImageUrl) {
             var src = window.URL.createObjectURL(blob);
             var imageThumbnail = document.createElement("img");
 
             imageThumbnail.className = "image-thumbnail";
             imageThumbnail.src = src;
+            imageThumbnail.dataset.originalImageUrl = originalImageUrl;
 
             var imageContainer = document.createElement("div");
             imageContainer.className = "image-container";
+
+            var hiddenControlsContainer = document.createElement("div");
+            hiddenControlsContainer.className = "hidden-controls-container";
+
+            // Maybe rework this later. Don't like how Gallery is dependant on an insignificant global variable.
+            if(hiddenControlsDisplayed){
+                hiddenControlsContainer.style.display = "block";
+            } else {
+                hiddenControlsContainer.style.display = "none";
+            }
+
+            var deleteButton = document.createElement("button");
+            deleteButton.className = "image-delete-button hidden-control";
+            deleteButton.innerText = "Delete";
+            deleteButton.addEventListener("click", function () {
+                Gallery.removeImage(originalImageUrl, responsiveBlock);
+            });
 
             var responsiveBlock = document.createElement("div");
             responsiveBlock.className = "responsive-block";
 
             imageContainer.appendChild(imageThumbnail);
+            hiddenControlsContainer.appendChild(deleteButton);
+            imageContainer.appendChild(hiddenControlsContainer);
+            //imageContainer.appendChild(deleteButton);
             responsiveBlock.appendChild(imageContainer);
-            galleryEle.appendChild(responsiveBlock);
-
-            imageThumbnail.src = src;
+            galleryElement.appendChild(responsiveBlock);
 
             imageThumbnail.addEventListener("click", function () {
                 Modal.show(src);
             });
         }
 
-        this.addImage = function addImage(blob) {
-            Database.put(blob);
-            makeThumbnail(blob);
+        // Deal with duplicates?
+        this.addImage = function addImage(blob, originalImageUrl) {
+            Database.put({ data: blob, source: originalImageUrl }, originalImageUrl);
+            makeThumbnail(blob, originalImageUrl);
         }
 
+        // order gets messed up
+        // keys sorted alphabetically
+        // use date to determine order?
+        // minor bug, fix later
         function loadImages(imageCollection) {
             console.log("Loading gallery:", imageCollection);
             for (let i = 0; i < imageCollection.length; i++)
-                makeThumbnail(imageCollection[i]);
+                makeThumbnail(imageCollection[i].data, imageCollection[i].source);
         }
 
-        this.deleteImages = function deleteImages(){
-            galleryEle.innerHTML = "";
+        this.deleteImages = function deleteImages() {
+            galleryElement.innerHTML = "";
             Database.clearRecords();
         }
 

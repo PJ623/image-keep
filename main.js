@@ -4,10 +4,12 @@ Gallery.init();
 var conversionCanvas = document.getElementById("conversion-canvas");
 var conversionCanvasContext = conversionCanvas.getContext("2d");
 
-function compressAndStoreBlob(blob) {
+function compressAndStoreImage(blob, originalImageUrl) {
     var tempImgEle = new Image();
     tempImgEle.crossOrigin = "Anonymous"; // To prevent from tainting canvas
     tempImgEle.src = URL.createObjectURL(blob);
+
+    console.log("url:", originalImageUrl);
 
     tempImgEle.onload = function () {
         conversionCanvas.height = tempImgEle.height;
@@ -15,21 +17,22 @@ function compressAndStoreBlob(blob) {
         conversionCanvasContext.drawImage(tempImgEle, 0, 0);
 
         conversionCanvas.toBlob(function (blob) {
-            Gallery.addImage(blob);
+            Gallery.addImage(blob, originalImageUrl);
         }, "image/jpeg", 0.92);
     }
 }
 
 // Account for errors
-function fetchImage(src, bypassAttempted) {
+function fetchImage(url, bypassAttempted) {
     if (bypassAttempted == undefined)
         bypassAttempted = false;
 
-    fetch(src)
+    fetch(url)
         .then(function (response) {
             if (response.status == 200) {
+                url = response.url;
                 response.blob().then(function (blob) {
-                    compressAndStoreBlob(blob);
+                    compressAndStoreImage(blob, url);
                 });
             } else {
                 alert("Response status: " + response.status + ". " + "Image could not be fetched.");
@@ -39,7 +42,7 @@ function fetchImage(src, bypassAttempted) {
                 console.log(e);
                 console.log("Attempting to bypass CORS...");
                 bypassAttempted = true;
-                fetchImage(("https://cors-anywhere.herokuapp.com/" + src), bypassAttempted);
+                fetchImage(("https://cors-anywhere.herokuapp.com/" + url), bypassAttempted);
             } else {
                 alert(e);
             }
@@ -64,4 +67,29 @@ fetchButton.addEventListener("click", function () {
 document.getElementById("delete-db").addEventListener("click", function () {
     if (confirm("Delete all images?"))
         Gallery.deleteImages();
+});
+
+var optionsToggleButton = document.getElementById("options-toggle");
+
+// Turn into gallery property?
+// rename to galleryControlsDisplayed?
+var hiddenControlsDisplayed = false;
+
+optionsToggleButton.addEventListener("click", function () {
+    var hiddenControlsContainers = document.getElementsByClassName("hidden-controls-container");
+    for (let i = 0; i < hiddenControlsContainers.length; i++) {
+        if (hiddenControlsDisplayed == false) {
+            hiddenControlsContainers[i].style.display = "block";
+        } else {
+            hiddenControlsContainers[i].style.display = "none";
+        }
+    }
+    
+    if (hiddenControlsDisplayed == false) {
+        hiddenControlsDisplayed = true;
+    } else {
+        hiddenControlsDisplayed = false;
+    }
+
+    //hiddenControlsDisplayed = false;
 });

@@ -16,7 +16,7 @@ var Database = {
 
         request.onupgradeneeded = function () {
             console.log("Upgrade is needed.");
-            this.result.createObjectStore(objectStoreName, { autoIncrement: true });
+            this.result.createObjectStore(objectStoreName);
         }
 
         request.onsuccess = function () {
@@ -24,21 +24,20 @@ var Database = {
             this.result.close(); // Not sure if needed here. No transaction has taken place.
         }
 
-        this.put = function (data) {
+        this.put = function put(data, key) {
             var request = window.indexedDB.open(dbName, dbVersion);
 
             request.onsuccess = function () {
                 var transaction = this.result.transaction(objectStoreName, "readwrite");
                 var store = transaction.objectStore(objectStoreName);
-
-                var action = store.put(data);
+                var action = store.put(data, key);
 
                 action.onsuccess = function () {
-                    console.log("Successfully put " + data + " into the database.");
+                    console.log("Successfully put " + data + " into the database. " + "Data was stored with key, " + key + ".");
                 }
 
                 action.onerror = function () {
-                    alert("Failed to put new data into database.");
+                    alert("Failed to put " + data + " with key, " + key + " into the database.");
                 }
 
                 // Arrow function to access lexical scope of 'this'!
@@ -48,16 +47,13 @@ var Database = {
             }
         }
 
-        this.getAll = function (fn) {
+        this.getAll = function getAll(fn) {
             var request = window.indexedDB.open(dbName, dbVersion);
 
             request.onsuccess = function () {
                 var transaction = this.result.transaction(objectStoreName, "readonly");
                 var store = transaction.objectStore(objectStoreName);
-
                 var action = store.getAll();
-
-                // Do all logic in here.
 
                 if (!fn || typeof fn != "function") {
                     fn = function () {
@@ -70,7 +66,7 @@ var Database = {
                 }*/
 
                 action.onerror = function () {
-                    alert("Action could not be completed.");
+                    alert("Unable to get items from object store" + objectStoreName + ".");
                 }
 
                 // Arrow function to access lexical scope of 'this'!
@@ -80,20 +76,49 @@ var Database = {
             }
         }
 
-        this.clearRecords = function() {
+        this.remove = function remove(key, fn) {
+            var request = window.indexedDB.open(dbName, dbVersion);
+            console.log("KEY:", key);
+            console.log(typeof key == "string");
+            console.log("Database.remove called!");
+
+            request.onsuccess = function () {
+                var transaction = this.result.transaction(objectStoreName, "readwrite");
+                var store = transaction.objectStore(objectStoreName);
+                var action = store.delete(key);
+
+                action.onsuccess = function () {
+                    console.log("Deleted item at " + key + ".");
+                    if (fn && typeof fn == "function") {
+                        fn();
+                    }
+                }
+
+                action.onerror = function () {
+                    alert("Failed to delete item at key " + key + ".");
+                }
+
+                // Arrow function to access lexical scope of 'this'!
+                transaction.oncomplete = () => {
+                    this.result.close();
+                }
+            }
+        }
+
+        this.clearRecords = function clearRecords() {
             var request = window.indexedDB.open(dbName, dbVersion);
 
-            request.onsuccess = function(){
+            request.onsuccess = function () {
                 var transaction = this.result.transaction(objectStoreName, "readwrite");
                 var store = transaction.objectStore(objectStoreName);
 
                 var action = store.clear();
 
-                action.onsuccess = function(){
+                action.onsuccess = function () {
                     alert("Cleared database of all records.");
                 }
 
-                action.onerror = function(){
+                action.onerror = function () {
                     alert("Could not clear database of all records.");
                 }
 
