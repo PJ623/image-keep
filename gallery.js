@@ -29,7 +29,7 @@ var Gallery = {
             hiddenControlsContainer.className = "hidden-controls-container";
 
             // Maybe rework this later. Don't like how Gallery is dependant on an insignificant global variable.
-            if(hiddenControlsDisplayed){
+            if (hiddenControlsDisplayed) {
                 hiddenControlsContainer.style.display = "block";
             } else {
                 hiddenControlsContainer.style.display = "none";
@@ -48,7 +48,6 @@ var Gallery = {
             imageContainer.appendChild(imageThumbnail);
             hiddenControlsContainer.appendChild(deleteButton);
             imageContainer.appendChild(hiddenControlsContainer);
-            //imageContainer.appendChild(deleteButton);
             responsiveBlock.appendChild(imageContainer);
             galleryElement.appendChild(responsiveBlock);
 
@@ -59,16 +58,15 @@ var Gallery = {
 
         // Deal with duplicates?
         this.addImage = function addImage(blob, originalImageUrl) {
-            Database.put({ data: blob, source: originalImageUrl }, originalImageUrl);
+            Database.put({ data: blob, source: originalImageUrl, dateAdded: Date.now() }, originalImageUrl);
             makeThumbnail(blob, originalImageUrl);
         }
 
-        // order gets messed up
-        // keys sorted alphabetically
-        // use date to determine order?
-        // minor bug, fix later
         function loadImages(imageCollection) {
             console.log("Loading gallery:", imageCollection);
+            imageCollection.sort(function (a, b) {
+                return a.dateAdded - b.dateAdded;
+            });
             for (let i = 0; i < imageCollection.length; i++)
                 makeThumbnail(imageCollection[i].data, imageCollection[i].source);
         }

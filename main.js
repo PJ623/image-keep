@@ -78,16 +78,14 @@ var hiddenControlsDisplayed = false;
 optionsToggleButton.addEventListener("click", function () {
     var hiddenControlsContainers = document.getElementsByClassName("hidden-controls-container");
     for (let i = 0; i < hiddenControlsContainers.length; i++) {
-        if (hiddenControlsDisplayed == false) {
+        if (hiddenControlsDisplayed == false)
             hiddenControlsContainers[i].style.display = "block";
-        } else {
+        else
             hiddenControlsContainers[i].style.display = "none";
-        }
     }
 
-    if (hiddenControlsDisplayed == false) {
+    if (hiddenControlsDisplayed == false)
         hiddenControlsDisplayed = true;
-    } else {
+    else
         hiddenControlsDisplayed = false;
-    }
 });
