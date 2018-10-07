@@ -78,9 +78,6 @@ var Database = {
 
         this.remove = function remove(key, fn) {
             var request = window.indexedDB.open(dbName, dbVersion);
-            console.log("KEY:", key);
-            console.log(typeof key == "string");
-            console.log("Database.remove called!");
 
             request.onsuccess = function () {
                 var transaction = this.result.transaction(objectStoreName, "readwrite");

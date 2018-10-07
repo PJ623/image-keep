@@ -15,7 +15,14 @@ var Gallery = {
         }
 
         function makeThumbnail(blob, originalImageUrl) {
-            var src = window.URL.createObjectURL(blob);
+            var src;
+
+            if(typeof blob == "string"){
+                src = originalImageUrl;
+            } else {
+                src = window.URL.createObjectURL(blob);
+            }
+
             var imageThumbnail = document.createElement("img");
 
             imageThumbnail.className = "image-thumbnail";
@@ -64,11 +71,19 @@ var Gallery = {
 
         function loadImages(imageCollection) {
             console.log("Loading gallery:", imageCollection);
-            imageCollection.sort(function (a, b) {
-                return a.dateAdded - b.dateAdded;
-            });
-            for (let i = 0; i < imageCollection.length; i++)
-                makeThumbnail(imageCollection[i].data, imageCollection[i].source);
+
+            if (imageCollection.length > 0) {
+                galleryElement.innerHTML = "";
+
+                imageCollection.sort(function (a, b) {
+                    return a.dateAdded - b.dateAdded;
+                });
+                for (let i = 0; i < imageCollection.length; i++)
+                    makeThumbnail(imageCollection[i].data, imageCollection[i].source);
+            } else {
+                var instructionsImageSrc = "assets/images/instructions/image-vault-instructions.JPG";
+                makeThumbnail(instructionsImageSrc, instructionsImageSrc);
+            }
         }
 
         this.deleteImages = function deleteImages() {
