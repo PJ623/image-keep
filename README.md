@@ -11,9 +11,9 @@ Image Keep is meant to be saved in local storage so that it can be used offline,
 
 ## Setup
 
-1. Download the project. (download link: [ZIP file](https://github.com/PJ623/image-keep/archive/master.zip)
-2. Extract the project into a directory of your choosing.
-3. Open the project in a browser. (ex. on an Android browser, visit file//:sdcard/[your specified extraction directory]/image-keep-master/index.html)
+1. Download Image Keep. (download link: [ZIP file](https://github.com/PJ623/image-keep/archive/master.zip))
+2. Extract Image Keep into a directory of your choosing.
+3. Open Image Keep in a browser. (ex. on an Android browser, visit file//:sdcard/[your specified extraction directory]/image-keep-master/index.html)
 
 
 ## Usage Instructions
