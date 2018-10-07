@@ -27,26 +27,28 @@ function fetchImage(url, bypassAttempted) {
     if (bypassAttempted == undefined)
         bypassAttempted = false;
 
-    fetch(url)
-        .then(function (response) {
-            if (response.status == 200) {
-                url = response.url;
-                response.blob().then(function (blob) {
-                    compressAndStoreImage(blob, url);
-                });
-            } else {
-                alert("Response status: " + response.status + ". " + "Image could not be fetched.");
-            }
-        }).catch(function (e) {
-            if (bypassAttempted == false) {
-                console.log(e);
-                console.log("Attempting to bypass CORS...");
-                bypassAttempted = true;
-                fetchImage(("https://cors-anywhere.herokuapp.com/" + url), bypassAttempted);
-            } else {
-                alert(e);
-            }
-        });
+    fetch(url, {
+        method: "GET",
+        mode: "cors"
+    }).then(function (response) {
+        if (response.status == 200) {
+            url = response.url;
+            response.blob().then(function (blob) {
+                compressAndStoreImage(blob, url);
+            });
+        } else {
+            alert("Response status: " + response.status + ". " + "Image could not be fetched.");
+        }
+    }).catch(function (e) {
+        if (bypassAttempted == false) {
+            console.log(e);
+            console.log("Attempting to bypass CORS...");
+            bypassAttempted = true;
+            fetchImage(("https://cors-anywhere.herokuapp.com/" + url), bypassAttempted);
+        } else {
+            alert(e);
+        }
+    });
 }
 
 var imageSrcTextbox = document.getElementById("image-src-textbox");
