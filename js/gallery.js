@@ -82,7 +82,7 @@ var Gallery = {
                     makeThumbnail(imageCollection[i].data, imageCollection[i].source);
             } else {
                 var instructionsImageSrc = "assets/images/instructions/image-vault-instructions.JPG";
-                makeThumbnail(instructionsImageSrc, instructionsImageSrc);
+                Gallery.addImage(instructionsImageSrc, instructionsImageSrc);
             }
         }
 

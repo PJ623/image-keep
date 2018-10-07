@@ -9,6 +9,9 @@
 
 #fetch {
     background-color: teal;
+    width: 29px;
+    height: 29px;
+    text-align: center;
 }
 
 #fetch:active {
@@ -19,6 +22,10 @@ nav {
     width: inherit;
     text-align: center;
     color: white;
+}
+
+nav * {
+    vertical-align: middle;
 }
 
 nav button {
@@ -54,6 +61,7 @@ nav ul {
     display: block;
     background-color: black;
     width: 100%;
+    padding-bottom: 4px;
 }
 
 /* Desktop */
@@ -73,5 +81,9 @@ nav ul {
         justify-content: space-between;
         width: 961px;
         margin: 0 auto;
+    }
+
+    .stripe {
+        padding-bottom: 0px;
     }
 }

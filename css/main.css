@@ -7,6 +7,7 @@
 
 body {
     margin: 0;
+    background-color: #fdfdfd;
 }
 
 button {
@@ -21,22 +22,22 @@ button {
     padding: 8px;
 }
 
-#conversion-canvas, #conversion-img {
+#conversion-canvas {
     display: none;
 }
 
 .hidden-controls-container {
     display: none; /* Toggle to inline-block */
     width: 100%;
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 .image-container {
     display: inline-block;
     max-width: 100%;
-    margin: 8px 0;
-    padding: 8px;
+    padding: 4px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    background-color: white;
 }
 
 .image-container:active {
@@ -59,8 +60,8 @@ button {
 }
 
 .image-thumbnail {
-    max-width: 100%;
-    max-height: 500px; /*choose better number?*/
+    max-width: 102px;
+    max-height: 102px;
     margin: 0 auto;
     display: block;
     cursor: pointer;
@@ -91,7 +92,8 @@ button {
 }
 
 .responsive-block {
-    display: block;
+    margin: 8px;
+    display: inline-block;
 }
 
 /* Desktop */
@@ -99,10 +101,6 @@ button {
     .container {
         width: 961px;
         margin: 0 auto;
-    }
-
-    .image-container {
-        margin: 8px;
     }
 
     .image-delete-button:hover {
@@ -116,8 +114,6 @@ button {
 
     #gallery {
         text-align: left;
-        display: flex;
-        flex-wrap: wrap;
     }
 
     #options-toggle:hover {

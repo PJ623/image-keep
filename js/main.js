@@ -22,7 +22,6 @@ function compressAndStoreImage(blob, originalImageUrl) {
     }
 }
 
-// Account for errors
 function fetchImage(url, bypassAttempted) {
     if (bypassAttempted == undefined)
         bypassAttempted = false;
@@ -55,8 +54,9 @@ var imageSrcTextbox = document.getElementById("image-src-textbox");
 imageSrcTextbox.focus();
 
 var fetchButton = document.getElementById("fetch");
-fetchButton.addEventListener("click", function () {
-    var src = imageSrcTextbox.value.trim();
+
+fetchButtonCb = function () {
+    var src = imageSrcTextbox.value.replace("http://", "https://").trim();
 
     if (src == "")
         alert("Enter a URL.");
@@ -64,15 +64,15 @@ fetchButton.addEventListener("click", function () {
         fetchImage(src);
 
     imageSrcTextbox.value = "";
-    this.blur();
-});
+    fetchButton.blur();
+}
 
-var deleteDbButton = document.getElementById("delete-db");
-deleteDbButton.addEventListener("click", function () {
-    if (confirm("Delete all images?"))
-        Gallery.deleteImages();
+fetchButton.addEventListener("click", fetchButtonCb);
 
-    this.blur();
+imageSrcTextbox.addEventListener("keypress", function (event) {
+    if (event.keyCode == 13) {
+        fetchButtonCb();
+    }
 });
 
 var optionsToggleButton = document.getElementById("options-toggle");

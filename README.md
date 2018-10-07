@@ -36,9 +36,3 @@ Image Keep is meant to be saved in local storage so that it can be used offline,
 
 1. Press the 'O' button on the bottom right of the Image Keep page.
 2. Press the newly appeared 'Delete' button that is associated to the image you want to delete from your gallery.
-
-
-### Deleting All Images from Your Gallery
-
-1. Press the 'Clear' button.
-2. Click 'OK' on newly appeared prompt to confirm that you want to delete all the images from your gallery.
