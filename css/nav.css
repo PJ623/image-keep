@@ -1,5 +1,5 @@
 /* Mobile */
-#fetch {
+#fetch-button {
     background-color: white;
     width: 29px;
     height: 29px;
@@ -7,7 +7,7 @@
     padding-right: 8px;
 }
 
-#fetch > img {
+#fetch-button > img {
     margin: auto;
     max-height: 10px;
     max-width: 10px;
@@ -38,7 +38,8 @@ nav input[type="text"] {
     display: inline-block;
     border: none;
     border-radius: 16px 0px 0px 16px;
-    padding: 4px 0px 4px 16px;
+    padding: 0px 0px 0px 16px; 
+    height: 29px;
 }
 
 nav > span {

@@ -49,8 +49,7 @@ function fetchImage(url, bypassAttempted) {
 }
 
 var imageSrcTextbox = document.getElementById("image-src-textbox");
-
-var fetchButton = document.getElementById("fetch");
+var fetchButton = document.getElementById("fetch-button");
 
 fetchButtonCb = function () {
     var src = imageSrcTextbox.value.replace("http://", "https://").trim();
