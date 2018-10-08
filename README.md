@@ -9,7 +9,7 @@ Currently, Image Keep uses [CORS Anywhere](https://cors-anywhere.herokuapp.com/)
 Image Keep is meant to be saved in local storage so that it can be used offline, but an online version of Image Keep [here](https://pj623.github.io/image-keep/). Please note that in my personal testing, GitHub Pages hosting (as much as I love it) causes Image Keep to encounter 403 Forbidden Errors during image retrieval from certain sites that the offline version of Image Keep does not encounter.
 
 
-Image Keep utilizes icons from [http://www.glyphicons.com/](http://www.glyphicons.com/) under the [Creative Commons Attribution 3.0 Unported License (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/).
+Image Keep utilizes icons from [GLYPHICONS.com](http://www.glyphicons.com/) under the [Creative Commons Attribution 3.0 Unported License (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/).
 
 
 ## Setup
