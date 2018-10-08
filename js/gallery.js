@@ -10,18 +10,17 @@ var Gallery = {
 
         this.removeImage = function removeImage(originalImageUrl, element) {
             Database.remove(originalImageUrl, function deleteElement() {
-                galleryElement.removeChild(element);
+                element.remove();
             });
         }
 
         function makeThumbnail(blob, originalImageUrl) {
             var src;
 
-            if(typeof blob == "string"){
+            if(typeof blob == "string")
                 src = originalImageUrl;
-            } else {
+            else
                 src = window.URL.createObjectURL(blob);
-            }
 
             var imageThumbnail = document.createElement("img");
 
@@ -36,18 +35,27 @@ var Gallery = {
             hiddenControlsContainer.className = "hidden-controls-container";
 
             // Maybe rework this later. Don't like how Gallery is dependant on an insignificant global variable.
-            if (hiddenControlsDisplayed) {
+            if (hiddenControlsDisplayed)
                 hiddenControlsContainer.style.display = "block";
-            } else {
+            else
                 hiddenControlsContainer.style.display = "none";
-            }
 
             var deleteButton = document.createElement("button");
             deleteButton.className = "image-delete-button hidden-control";
-            deleteButton.innerText = "Delete";
             deleteButton.addEventListener("click", function () {
                 Gallery.removeImage(originalImageUrl, responsiveBlock);
             });
+
+            var deleteButtonImg = document.createElement("img");
+            deleteButtonImg.src = "./assets/images/glyphicons/glyphicons-193-remove-sign.png";
+            deleteButton.appendChild(deleteButtonImg);
+
+            imageThumbnail.onload = function(){
+                const offset = Math.floor(deleteButtonImg.height/2 - 2);
+
+                hiddenControlsContainer.style.bottom = imageThumbnail.height + offset;
+                hiddenControlsContainer.style.left = offset;
+            }
 
             var responsiveBlock = document.createElement("div");
             responsiveBlock.className = "responsive-block";

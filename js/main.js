@@ -9,8 +9,6 @@ function compressAndStoreImage(blob, originalImageUrl) {
     tempImgEle.crossOrigin = "Anonymous"; // To prevent from tainting canvas
     tempImgEle.src = URL.createObjectURL(blob);
 
-    console.log("url:", originalImageUrl);
-
     tempImgEle.onload = function () {
         conversionCanvas.height = tempImgEle.height;
         conversionCanvas.width = tempImgEle.width;
@@ -51,7 +49,6 @@ function fetchImage(url, bypassAttempted) {
 }
 
 var imageSrcTextbox = document.getElementById("image-src-textbox");
-imageSrcTextbox.focus();
 
 var fetchButton = document.getElementById("fetch");
 

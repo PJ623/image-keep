@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Image Keep</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/nav.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/modal.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/nav.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/modal.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
 </head>
 
 <body>
@@ -16,8 +16,7 @@
         <nav>
             <span class="logo">Image Keep</span>
             <div id="fetch-controls">
-                <input id="image-src-textbox" type="text" placeholder="Enter image an URL">
-                <button id="fetch">+</button>
+                <input id="image-src-textbox" type="text" placeholder="Enter image an URL"><button id="fetch"><img src="./assets/images/glyphicons/glyphicons-433-plus.png"></button>
             </div>
         </nav>
     </div>
@@ -25,17 +24,23 @@
         <div id="gallery">
             <!-- Images are loaded here! -->
         </div>
+        <div id="footer-container">
+            <hr>
+            <footer>
+                <p>This site utilizes icons from <a target="_blank" href="http://www.glyphicons.com/">GLYPHICONS.com</a> under the <a target="_blank" rel="License" href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License (CC BY 3.0)</a>.</p>
+            </footer>
+        </div>
     </div>
-    <button id="options-toggle">O</button>
+    <button id="options-toggle"><img src="./assets/images/glyphicons/glyphicons-137-cogwheel.png"></button>
     <div id="modal">
         <img id="modal-image" src="">
     </div>
     <canvas id="conversion-canvas"></canvas>
 
-    <script src="js/database.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/gallery.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./js/database.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/gallery.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

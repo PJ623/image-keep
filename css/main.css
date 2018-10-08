@@ -7,7 +7,7 @@
 
 body {
     margin: 0;
-    background-color: #fdfdfd;
+    background-color: white;
 }
 
 button {
@@ -16,6 +16,7 @@ button {
 
 .container {
     display: block;
+    width: 100%;
 }
 
 .container > div {
@@ -26,16 +27,27 @@ button {
     display: none;
 }
 
+#footer-container {
+    display: block;
+    position: static;
+    width: inherit;
+    margin: auto 0;
+}
+
+#footer-container p, #footer-container a {
+    font-size: 12px;
+    text-align: center;
+}
+
 .hidden-controls-container {
-    display: none; /* Toggle to inline-block */
-    width: 100%;
-    margin-top: 4px;
+    display: none; /* toggles to 'block' */
+    position: relative;
+    height: 0px;
 }
 
 .image-container {
     display: inline-block;
     max-width: 100%;
-    padding: 4px;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     background-color: white;
 }
@@ -44,24 +56,22 @@ button {
     box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-/* Basically the same look as the nav buttons. Redundant? */
 .image-delete-button {
-    border-radius: 4px;
-    background-color: red;
+    background-color: inherit;
     border: none;
-    color: white;
-    padding: 4px;
     display: block;
-    margin: 0 auto;
+    padding: 0px;
+    margin-left: auto;
 }
 
-.image-delete-button:active {
-    background-color: rgba(200,0,0,1);
+.image-delete-button > img {
+    max-height: 24px;
+    max-width: 24px;
 }
 
 .image-thumbnail {
-    max-width: 102px;
-    max-height: 102px;
+    max-width: 100px;
+    max-height: 100px;
     margin: 0 auto;
     display: block;
     cursor: pointer;
@@ -79,16 +89,21 @@ button {
     right: 0;
     border-radius: 50%;
     border: none;
-    height: 50px;
-    width: 50px;
-    background-color: teal;
-    color: white;
+    height: 51px;
+    width: 51px;
+    background-color: #f1f1f1;
     box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 0px;
+    text-align: center;
 }
 
 #options-toggle:active {
     box-shadow: none;
-    background-color: rgba(0,100,100,1);
+    background-color: #7f7f7f;
+}
+
+#options-toggle > img {
+    margin: auto;
 }
 
 .responsive-block {
@@ -103,10 +118,6 @@ button {
         margin: 0 auto;
     }
 
-    .image-delete-button:hover {
-        background-color: rgba(200,0,0,1);
-    }
-
     .image-thumbnail {
         max-width: 200px;
         max-height: 200px;
@@ -116,7 +127,11 @@ button {
         text-align: left;
     }
 
+    #options-toggle {
+        margin: 50px;
+    }
+
     #options-toggle:hover {
-        background-color: rgba(0,100,100,1);
+        background-color: #7f7f7f;
     }
 }
