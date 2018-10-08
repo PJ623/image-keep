@@ -68,6 +68,8 @@ fetchButton.addEventListener("click", fetchButtonCb);
 imageSrcTextbox.addEventListener("keypress", function (event) {
     if (event.keyCode == 13) {
         fetchButtonCb();
+        fetchButton.focus();
+        fetchButton.blur();
     }
 });
 
