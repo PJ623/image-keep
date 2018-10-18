@@ -32,6 +32,7 @@ button {
     bottom: 0;
     width: auto;
     height: auto;
+    margin: 16px;
 }
 
 #data-transfer-controls-container > button {
@@ -57,11 +58,6 @@ button {
 #export-button {
     margin-right: 8px;
 }
-
-/*
-#export-string-textarea {
-    display: none;
-}*/
 
 #footer-container {
     display: block;
