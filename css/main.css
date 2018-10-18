@@ -27,6 +27,42 @@ button {
     display: none;
 }
 
+#data-transfer-controls-container {
+    position: fixed;
+    bottom: 0;
+    width: auto;
+    height: auto;
+}
+
+#data-transfer-controls-container > button {
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    border: none;
+    height: 51px;
+    width: 51px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 0px;
+    text-align: center;
+}
+
+#data-transfer-controls-container > button > image {
+    margin: auto;
+}
+
+#data-transfer-controls-container > button:active {
+    box-shadow: none;
+    background-color: #7f7f7f;
+}
+
+#export-button {
+    margin-right: 8px;
+}
+
+/*
+#export-string-textarea {
+    display: none;
+}*/
+
 #footer-container {
     display: block;
     position: static;
@@ -77,6 +113,10 @@ button {
     cursor: pointer;
 }
 
+#import-button {
+    margin-left: 8px;
+}
+
 #gallery {
     display: block;
     text-align: center;
@@ -116,6 +156,15 @@ button {
     .container {
         width: 961px;
         margin: 0 auto;
+    }
+    
+    #data-transfer-controls-container {
+        margin: 50px;
+    }
+
+    #data-transfer-controls-container > button:hover {
+        box-shadow: none;
+        background-color: #7f7f7f;
     }
 
     .image-thumbnail {

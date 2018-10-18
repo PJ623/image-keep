@@ -95,3 +95,27 @@ optionsToggleButton.addEventListener("click", function () {
 
     this.blur()
 });
+
+var exportButton = document.getElementById("export-button");
+exportButton.addEventListener("click", function () {
+    Database.getAll(function () {
+        var exportString = "";
+        for (let i = 0; i < this.result.length; i++) {
+            exportString += this.result[i].source + " ";
+        }
+
+        prompt("Please copy the export string:", exportString);
+    });
+});
+
+var importButton = document.getElementById("import-button");
+importButton.addEventListener("click", function () {
+    var exportString = prompt("Enter export string.");
+
+    if (exportString) {
+        var sourcesArr = exportString.split(" ");
+        for (let i = 0; i < sourcesArr.length; i++) {
+            fetchImage(sourcesArr[i]);
+        }
+    }
+});
