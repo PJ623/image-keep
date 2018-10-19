@@ -17,7 +17,7 @@ var Gallery = {
         function makeThumbnail(blob, originalImageUrl) {
             var src;
 
-            if(typeof blob == "string")
+            if (typeof blob == "string")
                 src = originalImageUrl;
             else
                 src = window.URL.createObjectURL(blob);
@@ -50,8 +50,8 @@ var Gallery = {
             deleteButtonImg.src = "./assets/images/glyphicons/glyphicons-193-remove-sign.png";
             deleteButton.appendChild(deleteButtonImg);
 
-            imageThumbnail.onload = function(){
-                const offset = Math.floor(deleteButtonImg.height/2 - 2);
+            imageThumbnail.onload = function () {
+                const offset = Math.floor(deleteButtonImg.height / 2 - 2);
 
                 hiddenControlsContainer.style.bottom = imageThumbnail.height + offset;
                 hiddenControlsContainer.style.left = offset;
@@ -77,15 +77,19 @@ var Gallery = {
             makeThumbnail(blob, originalImageUrl);
         }
 
+        function sortImagesByDate(a, b) {
+            return a.dateAdded - b.dateAdded;
+        }
+
         function loadImages(imageCollection) {
             console.log("Loading gallery:", imageCollection);
 
             if (imageCollection.length > 0) {
                 galleryElement.innerHTML = "";
 
-                imageCollection.sort(function (a, b) {
+                imageCollection.sort(sortImagesByDate/*function (a, b) {
                     return a.dateAdded - b.dateAdded;
-                });
+                }*/);
                 for (let i = 0; i < imageCollection.length; i++)
                     makeThumbnail(imageCollection[i].data, imageCollection[i].source);
             } else {
@@ -99,8 +103,32 @@ var Gallery = {
             Database.clearRecords();
         }
 
+        this.exportSources = function exportSources() {
+            Database.getAll(function () {
+                var imageCollection = this.result;
+                var exportString = "";
+
+                imageCollection.sort(sortImagesByDate);
+
+                for (let i = 0; i < imageCollection.length; i++)
+                    exportString += imageCollection[i].source + ",";
+
+                prompt("Please copy the export string:", exportString);
+            });
+        }
+
+        this.importSources = function importSources() {
+            var exportString = prompt("Enter export string.");
+
+            if (exportString) {
+                var sourcesArr = exportString.split(",");
+                for (let i = 0; i < sourcesArr.length; i++)
+                    fetchImage(sourcesArr[i]);
+            }
+        }
+
         Database.getAll(function () {
-            imageCollection = this.result;
+            var imageCollection = this.result;
             loadImages(imageCollection);
         });
 
