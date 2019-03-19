@@ -49,7 +49,7 @@ Image Keep utilizes icons from [GLYPHICONS.com](http://www.glyphicons.com/) unde
 4. Either press the 'OK' button or 'Cancel' button of the prompt to dismiss the prompt.
 
 
-### Importing A Gallery
+### Importing a Gallery
 
 Please note that import works by re-fetching the images from the web using the URLs contained within an export string. Some images may fail to be imported because those images may no longer be available on the web. 
 
